@@ -2,12 +2,15 @@ import os
 
 import telebot
 
+from neuralink import start_learning
+
 API_KEY = os.getenv('API_KEY')
 bot = telebot.AsyncTeleBot(API_KEY)
 
 
 @bot.message_handler(commands=['start'])
 def startCmd(message):
+    start_learning()
     bot.reply_to(message, "Hey, let's start")
 
 

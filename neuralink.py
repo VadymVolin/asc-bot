@@ -70,7 +70,7 @@ def create_model(input_shape):
     return model
 
 
-if __name__ == "__main__":
+def start_learning():
     # загружаем данные
     ds_train, ds_test, info = load_data()
     # конструируем модель
