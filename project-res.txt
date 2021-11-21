@@ -1,3 +1,16 @@
 https://www.thepythoncode.com/code/image-classification-keras-python - neuralink
 https://www.tensorflow.org/tutorials/images/classification
 https://www.tensorflow.org/tutorials/load_data/images#using_tensorflow_datasets
+
+
+===================================================================
+Download image: 
+
+It's possible to download the image from Telegram server. Do this:
+1. Get the file using the getFile api
+
+//Telegram link
+$telegram_link = 'https://api.telegram.org/bot' . $this->tg_configs['api_key'] . '/getFile?file_id=' . $photo['file_id'];
+
+2. Get the file path //Create guzzle client $guzzle_client = new GuzzleClient();
+=====================================================================================
