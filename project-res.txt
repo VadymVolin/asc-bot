@@ -1,1 +1,3 @@
 https://www.thepythoncode.com/code/image-classification-keras-python - neuralink
+https://www.tensorflow.org/tutorials/images/classification
+https://www.tensorflow.org/tutorials/load_data/images#using_tensorflow_datasets

@@ -40,18 +40,19 @@ print("Тестовая оценка:", accuracy*100, "%")
 # получить прогноз для этого изображения
 data_sample = next(iter(ds_test))
 
-img = Image.open("cat.jpg").batch(32)
-# img_array = img_to_array(img)
-img_array = tf.keras.preprocessing.image.img_to_array(img)
-print(img_array.dtype)
-print(img_array.shape)
+sunflower_url = "cat.png"
+
+img = load_img(path=sunflower_url, target_size=(32, 32))
+img_array = tf.keras.utils.img_to_array(img)
+# img_array = tf.expand_dims(img_array, 0) # Create a batch
+
 
 sample_label = "cat"
-sample_image = tf.convert_to_tensor(img_array, dtype=tf.int32)
+# sample_image = tf.convert_to_tensor(img_array, dtype=tf.int32)
 # sample_image = tf.image.convert_image_dtype(sample_image, dtype=tf.float32)
-sample_image = np.array(img_array)
+# sample_image = np.array(img_array)
 prediction = np.argmax(model.predict(
-    sample_image.reshape(-1, *sample_image.shape))[0])
+    img_array.reshape(-1, *img_array.shape))[0])
 print("Predicted label:", categories[prediction])
 print("True label:", sample_label)
 
