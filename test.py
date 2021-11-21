@@ -40,14 +40,14 @@ print("Тестовая оценка:", accuracy*100, "%")
 # получить прогноз для этого изображения
 data_sample = next(iter(ds_test))
 
-sunflower_url = "cat.png"
+sunflower_url = "dog1.png"
 
 img = load_img(path=sunflower_url, target_size=(32, 32))
 img_array = tf.keras.utils.img_to_array(img)
 # img_array = tf.expand_dims(img_array, 0) # Create a batch
 
 
-sample_label = "cat"
+sample_label = "dog"
 # sample_image = tf.convert_to_tensor(img_array, dtype=tf.int32)
 # sample_image = tf.image.convert_image_dtype(sample_image, dtype=tf.float32)
 # sample_image = np.array(img_array)
