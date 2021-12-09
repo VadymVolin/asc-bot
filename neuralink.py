@@ -11,10 +11,11 @@ batch_size = 64
 # 10 категорий для изображений  (CIFAR-10)
 num_classes = 10
 # количество эпох для обучения
-epochs = 30
+epochs = 50
 
 
 def load_data():
+    print("Start loading data")
     """
     Эта функция загружает набор данных CIFAR-10 dataset и делает предварительную обработку
     """
@@ -35,6 +36,7 @@ def load_data():
 
 def create_model(input_shape):
     # построение модели
+    print("Creating model")
     model = Sequential()
     model.add(Conv2D(filters=32, kernel_size=(3, 3),
               padding="same", input_shape=input_shape))
@@ -72,6 +74,7 @@ def create_model(input_shape):
 
 def start_learning():
     # загружаем данные
+    print("Start learning model")
     ds_train, ds_test, info = load_data()
     # конструируем модель
     model = create_model(input_shape=info.features["image"].shape)
@@ -87,4 +90,4 @@ def start_learning():
               validation_steps=info.splits["test"].num_examples // batch_size,
               callbacks=[tensorboard])
     # сохраняем модель на диске
-    model.save("results/cifar10-model-v1.h5")
+    model.save("results/cifar10-model-v2.h5")

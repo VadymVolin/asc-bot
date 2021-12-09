@@ -1,0 +1,9 @@
+.idea/.gitignore
+.idea/magister_work.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+__pycache__/config_constants.cpython-39.pyc
+__pycache__/config_util.cpython-39.pyc
+__pycache__/neuralink.cpython-39.pyc

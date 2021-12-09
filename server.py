@@ -57,17 +57,15 @@ def default_command(message):
 
 # Handle all other messages.
 
-
 @bot.message_handler(func=lambda message: True, chat_types=['private', 'group', 'supergroup', 'channel'], content_types=['photo', 'sticker'])
 def receive_img(message):
     message_text = message.text
-    print("Received text message: ", message_text)
+    print("Received image message: ", message_text)
     print( message.from_user.first_name)
-    result_text = "Received text message from " + message.from_user.first_name + \
+    result_text = "Received image, sticker in chat_types=['private', 'group', 'supergroup', 'channel'] message from " + message.from_user.first_name + \
                   "(@" + message.from_user.username + \
                   "): [" + message.sticker.emoji + "]. Thank you!"
     bot.send_message(message.chat.id, result_text)
-
 
 # @bot.message_handler(func=lambda message: True, content_types=['audio', 'photo', 'voice', 'video', 'document', 'text', 'location', 'contact', 'sticker'])
 # def default_command(message):
