@@ -27,36 +27,37 @@ categories = {
     9: "truck"
 }
 
-# загрузим тестовый набор
-ds_train, ds_test, info = load_data()
-# загрузим итоговую модель с весовыми коэффициентами
-model = load_model("results/cifar10-model-v1.h5")
+def check_image():
+    # загрузим тестовый набор
+    ds_train, ds_test, info = load_data()
+    # загрузим итоговую модель с весовыми коэффициентами
+    model = load_model("results/cifar10-model-v1.h5")
 
-# оценка
-loss, accuracy = model.evaluate(
-    ds_test, steps=info.splits["test"].num_examples // batch_size)
-print("Тестовая оценка:", accuracy*100, "%")
+    # оценка
+    loss, accuracy = model.evaluate(
+        ds_test, steps=info.splits["test"].num_examples // batch_size)
+    print("Тестовая оценка:", accuracy*100, "%")
 
-# получить прогноз для этого изображения
-data_sample = next(iter(ds_test))
+    # получить прогноз для этого изображения
+    data_sample = next(iter(ds_test))
 
-sunflower_url = "dog1.png"
+    sunflower_url = "dog1.png"
 
-img = load_img(path=sunflower_url, target_size=(32, 32))
-img_array = tf.keras.utils.img_to_array(img)
-# img_array = tf.expand_dims(img_array, 0) # Create a batch
+    img = load_img(path=sunflower_url, target_size=(32, 32))
+    img_array = tf.keras.utils.img_to_array(img)
 
 
-sample_label = "dog"
-# sample_image = tf.convert_to_tensor(img_array, dtype=tf.int32)
-# sample_image = tf.image.convert_image_dtype(sample_image, dtype=tf.float32)
-# sample_image = np.array(img_array)
-prediction = np.argmax(model.predict(
-    img_array.reshape(-1, *img_array.shape))[0])
-print("Predicted label:", categories[prediction])
-print("True label:", sample_label)
+    sample_label = "cat"
+    prediction = np.argmax(model.predict(
+        img_array.reshape(-1, *img_array.shape))[0])
+    print("Predicted label:", categories[prediction])
+    print("True label:", sample_label)
 
-# show the image
-plt.axis('off')
-plt.imshow(img)
-plt.show()
+
+    # show the image
+    plt.axis('on')
+    # plt.imshow(img)
+    plt.show()
+    return prediction == 3 and categories[prediction] == sample_label
+
+print(check_image())

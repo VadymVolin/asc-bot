@@ -11,4 +11,11 @@ def get_words_scheme():
     return words
 
 def get_characters_scheme():
-    print('TODO:add implementation here')
+    dict = {}
+    with open(CHARACTERS_SCHEME, 'r', encoding='utf8') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            if (row):
+                dict[row[0]] = row[1 : len(row)]
+
+    return dict

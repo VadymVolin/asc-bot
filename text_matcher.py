@@ -1,6 +1,7 @@
-from config_util import get_words_scheme
+from config_util import get_characters_scheme, get_words_scheme
 
 words = get_words_scheme()
+characters_scheme = get_characters_scheme()
 
 print("Фильтруемые слова:", words)
 
@@ -30,41 +31,6 @@ def distance(a, b):
     return current_row[n]
 
 
-characters_scheme = {'а': ['а', 'a', '@'],
-     'б': ['б', '6', 'b'],
-     'в': ['в', 'b', 'v'],
-     'г': ['г', 'r', 'g'],
-     'д': ['д', 'd'],
-     'е': ['е', 'e'],
-     'ё': ['ё', 'e'],
-     'ж': ['ж', 'zh', '*'],
-     'з': ['з', '3', 'z'],
-     'и': ['и', 'u', 'i'],
-     'й': ['й', 'u', 'i'],
-     'к': ['к', 'k', 'i{', '|{'],
-     'л': ['л', 'l', 'ji'],
-     'м': ['м', 'm'],
-     'н': ['н', 'h', 'n'],
-     'о': ['о', 'o', '0'],
-     'п': ['п', 'n', 'p'],
-     'р': ['р', 'r', 'p'],
-     'с': ['с', 'c', 's'],
-     'т': ['т', 'm', 't'],
-     'у': ['у', 'y', 'u'],
-     'ф': ['ф', 'f'],
-     'х': ['х', 'x', 'h', '}{'],
-     'ц': ['ц', 'c', 'u,'],
-     'ч': ['ч', 'ch'],
-     'ш': ['ш', 'sh'],
-     'щ': ['щ', 'sch'],
-     'ь': ['ь', 'b'],
-     'ы': ['ы', 'bi'],
-     'ъ': ['ъ'],
-     'э': ['э', 'e'],
-     'ю': ['ю', 'io'],
-     'я': ['я', 'ya']
-     }
-
 for key, value in characters_scheme.items():
     # Проходимся по каждой букве в значении словаря. То есть по вот этим спискам ['а', 'a', '@'].
     for letter in value:
@@ -82,6 +48,6 @@ for word in words:
         # Вот сам наш фрагмент.
         fragment = phrase[part: part+len(word)]
         # Если отличие этого фрагмента меньше или равно 25% этого слова, то считаем, что они равны.
-        if distance(fragment, word) <= len(word)*0.25:
+        if distance(fragment, word) <= len(word)*0.1:
             # Если они равны, выводим надпись о их нахождении.
             print("Найдено", word, "\nПохоже на", fragment)

@@ -83,7 +83,7 @@ w_filename = "config/words_scheme.csv"
 
 
 # writing to csv file
-with open(filename, 'w', encoding='utf8') as csvfile:
+with open(filename, 'w', encoding='utf8', newline='') as csvfile:
     # creating a csv writer object
     csvwriter = csv.writer(csvfile)
 
@@ -92,6 +92,7 @@ with open(filename, 'w', encoding='utf8') as csvfile:
         chr = []
         chr.append(key)
         chr.extend(value)
+        # csvwriter.writerow(key + " | " + str(value))
         csvwriter.writerow(chr)
 
     # writing the data rows
@@ -103,5 +104,9 @@ rows = []
 # reading csv file
 with open(filename, 'r', encoding='utf8') as csvfile:
     csvreader = csv.reader(csvfile)
+    dict = {}
     for row in csvreader:
-        print(row)
+        if (row):
+            dict[row[0]] = row[1 : len(row)]
+
+    print(dict)            
